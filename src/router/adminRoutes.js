@@ -4,11 +4,11 @@ const adminController = require("../controller/adminController.js");
 const categoryController = require("../controller/categoryController.js");
 const adminRouter = express.Router();
 
-
+const {adminLogin} = adminController;
 //admin routes
 adminRouter.post("/register", adminController.adminRegister);
-adminRouter.post("/login", adminController.adminLogin);
-adminRouter.get("/view", adminController.adminViewProduct);
+adminRouter.post("/login", adminLogin);
+adminRouter.get("/products", adminController.adminViewProduct);
 adminRouter.post("/addproduct", adminController.adminAddProduct);
 adminRouter.delete("/removeproduct", adminController.adminRemoveProduct);
 adminRouter.put("/editproduct", adminController.adminEditProduct);

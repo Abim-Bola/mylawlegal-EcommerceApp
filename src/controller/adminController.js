@@ -43,6 +43,7 @@ const adminController = {
 
         newadmin.save(function (err) {
             if (err) {
+                console.log(err);
                 res.status(500).send("Theres an error");
             } else {
                 res.status(200).send(req.body);
@@ -86,7 +87,7 @@ const adminController = {
 
     adminRemoveProduct(req, res){
       LegalProduct.deleteOne({categoryId: req.params.categoryId}, function(err){
-          
+
         if(err){
             res.status(500).send("there is an error");
         }else{

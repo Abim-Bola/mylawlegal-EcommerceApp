@@ -31,9 +31,9 @@ app.get("/", function(req, res){
 res.status(200).json({message: "Welcome to mylawlegal.com."});
 });
 
-app.use("/mylawlegal/user", userRouter);
-app.use("/mylawlegal/admin", adminRouter);
-app.use("/mylawlegal/admin", adminRouter);
+app.use("/api/user", userRouter);
+app.use("/api/admin", adminRouter);
+
 
 
 
