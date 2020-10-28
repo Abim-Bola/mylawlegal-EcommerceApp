@@ -1,6 +1,8 @@
 //jshint esversion:6
 const express = require("express");
 const userController = require("../controller/userController.js");
+const categoryController = require("../controller/categoryController.js");
+const adminController = require("../controller/adminController.js");
 const userRouter = express.Router();
 
 
