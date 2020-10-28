@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const LegalUser = require("../database/usermodel");
+const LegalUser = require("../database/models/userModel");
 
 
 

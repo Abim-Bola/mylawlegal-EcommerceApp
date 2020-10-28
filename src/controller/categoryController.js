@@ -2,8 +2,8 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const LegalAdmin = require("../database/adminmodel");
-const Category = require("../database/categoryModel");
+const LegalAdmin = require("../database/models/adminModel");
+const Category = require("../database/models/categoryModel");
 
 
 const categoryController = {
