@@ -21,5 +21,5 @@ This api was created using:
 
 # Links
 Heroku Link: https://lawlegal.herokuapp.com/ <br/>
-Documentation of Api: 
+Documentation of Api: https://documenter.getpostman.com/view/11641738/TVYJ5waP
 
