@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const jwt = require('json-web-token')
+const jwt = require('json-web-token');
 const bcrypt = require("bcryptjs");
 const LegalAdmin = require("../database/models/adminModel");
 const LegalProduct = require("../database/models/productModel");
@@ -48,13 +48,13 @@ const adminController = {
         }
 
         //find the user
-        LegalAdmin.findOne({ email: email }, function (foundUser) {
+        LegalAdmin.findOne({ email: email }, function (foundAdmin) {
 
-            if (foundUser) {
+            if (foundAdmin) {
                 res.status(401).json({ msg: 'Email already registered' });
             } else {
 
-                const newUser = new LegalAdmin({
+                const newAdmin = new LegalAdmin({
                     firstname,
                     lastname,
                     email,
@@ -62,13 +62,13 @@ const adminController = {
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    bcrypt.hash(newAdmin.password, salt, (err, hash) => {
                         if (err) throw err;
-                        newUser.password = hash;
-                        newUser
+                        newAdmin.password = hash;
+                        newAdmin
                             .save()
-                            .then(user => {
-                                res.status(200).json({ successmsg: "Registered Successfully" });
+                            .then(admin => {
+                                res.status(200).json({ successmsg: req.body });
                             })
                             .catch(err => console.log(err));
                     });
@@ -76,23 +76,6 @@ const adminController = {
             }
         });
     },
-    // const { firstname, lastname, email, password } = req.body;
-
-    // const newadmin = new LegalAdmin({
-    //     firstname,
-    //     lastname,
-    //     email,
-    //     password
-    // });
-
-    // newadmin.save(function (err) {
-    //     if (err) {
-    //         console.log(err);
-    //         res.status(500).send("Theres an error");
-    //     } else {
-    //         res.status(200).send(req.body);
-    //     }
-    // });
 
 
     adminAddProduct(req, res) {
@@ -142,12 +125,22 @@ const adminController = {
         });
     },
 
-    adminViewProduct(req, res) {
+    viewProduct(req, res) {
+        LegalProduct.find({}, function (err, products) {
 
+            if (err) {
+                res.status(500).send("there is an error");
+            } else {
+
+                res.status(200).json({msg: products});
+
+            }
+
+        });
     },
 
     adminEditProduct(req, res) {
-
+         
     }
 
 

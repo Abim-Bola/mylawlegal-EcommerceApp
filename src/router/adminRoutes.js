@@ -9,9 +9,9 @@ const {adminLogin} = adminController;
 //admin routes
 adminRouter.post("/register", adminController.adminRegister);
 adminRouter.post("/login", adminLogin);
-adminRouter.get("/products", adminController.adminViewProduct);
+adminRouter.get("/products", adminController.viewProduct);
 adminRouter.post("/addproduct", adminController.adminAddProduct);
-adminRouter.delete("/removeproduct", adminController.adminRemoveProduct);
+adminRouter.delete("/removeproduct/categoryId", adminController.adminRemoveProduct);
 adminRouter.put("/editproduct", adminController.adminEditProduct);
 
 //admin routes for categories

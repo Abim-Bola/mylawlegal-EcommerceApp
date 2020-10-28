@@ -12,26 +12,50 @@ const userController = {
     userRegister(req, res) {
 
         const { firstname, lastname, email, password } = req.body;
+        //if empty 
+        if (!firstname || !lastname || !email || !password) {
+            res.status(401).json({ errormsg: 'Please fill all fields' });
+        }
+        //pass length
+        if (password) {
+            if (password.length < 6) {
+                res.status(401).json({ errormsg: 'Password should be more than 6 characters' });
+            }
+        }
 
-        const newuser = new LegalUser({
-            firstname,
-            lastname,
-            email,
-            password
-        });
+        //find the user
+        LegalUser.findOne({ email: email }, function (foundUser) {
 
-        newuser.save(function (err) {
-            if (err) {
-                res.status(500).send("Theres an error");
+            if (foundUser) {
+                res.status(401).json({ msg: 'Email already registered' });
             } else {
-                res.status(200).send(req.body);
+
+                const newUser = new LegalUser({
+                    firstname,
+                    lastname,
+                    email,
+                    password
+                });
+
+                bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+                        if (err) throw err;
+                        newUser.password = hash;
+                        newUser
+                            .save()
+                            .then(user => {
+                                res.status(200).json({ successmsg: foundUser });
+                            })
+                            .catch(err => console.log(err));
+                    });
+                });
             }
         });
     },
 
 
     userLogin(req, res) {
-        LegalUser.findOne({ password: req.body.password }, function (err, foundUser) {
+        LegalUser.findOne({password: req.body.password }, function (err, foundUser) {
 
             if (!foundUser) {
                 res.status(401).json({ message: "Auth failed" });

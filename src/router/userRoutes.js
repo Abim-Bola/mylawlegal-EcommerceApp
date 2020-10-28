@@ -6,6 +6,8 @@ const userRouter = express.Router();
 
 userRouter.post("/register", userController.userRegister);
 userRouter.post("/login", userController.userLogin);
+userRouter.get("/categories", categoryController.viewCategory);
+userRouter.get("/products", adminController.viewProduct);
 
 
 
