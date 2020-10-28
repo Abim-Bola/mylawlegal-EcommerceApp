@@ -48,13 +48,13 @@ const adminController = {
         }
 
         //find the user
-        LegalUser.findOne({ email: email }, function (foundUser) {
+        LegalAdmin.findOne({ email: email }, function (foundUser) {
 
             if (foundUser) {
                 res.status(401).json({ msg: 'Email already registered' });
             } else {
 
-                const newUser = new LegalUser({
+                const newUser = new LegalAdmin({
                     firstname,
                     lastname,
                     email,
