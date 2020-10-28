@@ -2,6 +2,7 @@
 const express = require("express");
 const adminController = require("../controller/adminController.js");
 const categoryController = require("../controller/categoryController.js");
+const bcrypt = require("bcryptjs");
 const adminRouter = express.Router();
 
 const {adminLogin} = adminController;

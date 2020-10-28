@@ -9,14 +9,14 @@ const LegalUser = require("../database/models/userModel");
 const userController = {
 
 
-    userRegister(req, res){
+    userRegister(req, res) {
 
         const { firstname, lastname, email, password } = req.body;
 
         const newuser = new LegalUser({
-            firstname, 
-            lastname, 
-            email, 
+            firstname,
+            lastname,
+            email,
             password
         });
 
@@ -30,29 +30,29 @@ const userController = {
     },
 
 
-    userLogin(req, res){
-        LegalUser.findOne({password: req.body.password}, function(err, foundUser) {
-        
-            if(!foundUser) {
-              res.status(401).json({message: "Auth failed"});
-            } 
+    userLogin(req, res) {
+        LegalUser.findOne({ password: req.body.password }, function (err, foundUser) {
 
-            if(err){
-                res.status(401).json({message: "auth failed"});
+            if (!foundUser) {
+                res.status(401).json({ message: "Auth failed" });
             }
 
-            if(foundUser) {
-               res.status(200).json({message: "You are now logged in"});
-            } 
+            if (err) {
+                res.status(401).json({ message: "auth failed" });
+            }
+
+            if (foundUser) {
+                res.status(200).json({ message: "You are now logged in" });
+            }
         });
 
 
     },
 
 
-    
 
-    
+
+
 
 };
 

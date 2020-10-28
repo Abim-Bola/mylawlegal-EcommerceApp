@@ -1,5 +1,6 @@
 //jshint esversion:6
 module.exports =
+[
 
 {
     firstname: "segun",
@@ -20,4 +21,5 @@ module.exports =
     lasname: "bamgbelu",
     email: "abimbola@gmail.com",
     password: "199715"
-};
+}
+];

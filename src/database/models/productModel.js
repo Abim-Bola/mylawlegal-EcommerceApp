@@ -2,28 +2,28 @@
 const mongoose = require("mongoose");
 
 const LegalProductSchema = new mongoose.Schema({
-    
-description: {
-    type: String,
-    required: true
-},
 
-name: {
-    type: Date,
-    default: new Date()
-},
+    description: {
+        type: String,
+        required: true
+    },
 
-price: {
-    type: Number,
-    required: true
-},
+    name: {
+        type: Date,
+        default: new Date()
+    },
 
-categoryId: {
-    type: [Number],
-    required: true
-}
+    price: {
+        type: Number,
+        required: true
+    },
 
-}); 
+    categoryId: {
+        type: [Number],
+        required: true
+    }
+
+});
 
 const LegalProduct = mongoose.model('LegalProuct', LegalProductSchema);
 module.exports = LegalProduct;
