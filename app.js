@@ -22,7 +22,7 @@ const db = require('./src/database/key').MongoURI;
 .catch(err => console.log(err));
 
 
-// callback => promises => async/await
+
 
 //body parser
 app.use(express.urlencoded({extended: false}));
@@ -33,10 +33,11 @@ res.status(200).json({message: "Welcome to mylawlegal.com."});
 
 app.use("/mylawlegal/user", userRouter);
 app.use("/mylawlegal/admin", adminRouter);
+app.use("/mylawlegal/admin", adminRouter);
 
 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8000;
 
 app.listen(PORT, console.log("server started on" + " " + PORT));
 
